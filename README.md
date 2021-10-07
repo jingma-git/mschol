@@ -20,7 +20,7 @@ instead from [here](https://github.com/CGAL/cgal/releases).
 
 ## How to build
     
-    mkdir build; cd build; cmake -DCMAKE_BUILD_TYPE=Release; make -j8 -k;
+    mkdir build; cd build; cmake -DCMAKE_BUILD_TYPE=Release ..; make -j8 -k;
 
 ## Run examples
     
