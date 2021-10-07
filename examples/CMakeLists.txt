@@ -12,3 +12,10 @@ target_link_libraries(solve_problem_3d
   mschol
   ${GMP_LIBRARIES}
   )
+
+add_executable(anidiff anidiff.cc)
+target_link_libraries(anidiff
+  mschol
+  ${GMP_LIBRARIES}
+  ${OpenCV_LIBRARIES}
+  )
