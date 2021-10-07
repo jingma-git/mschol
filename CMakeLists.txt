@@ -18,6 +18,15 @@ find_package(BLAS REQUIRED)
 find_package(LAPACK REQUIRED)
 set(BLAS_LAPACK_LIBS ${LAPACK_LIBARIES} ${BLAS_LIBRARIES})
 
+# SuiteSparse
+find_package(SuiteSparse REQUIRED)
+if(SuiteSparse_FOUND)
+  message("-- SuiteSparse @ ${SuiteSparse_INCLUDE_DIRS}")
+  message("-- SuiteSparse libs @ ${SuiteSparse_LIBRARIES}")
+  include_directories(${SuiteSparse_INCLUDE_DIRS})
+endif(SuiteSparse_FOUND)
+
+
 # HEADER-ONLY LIBS
 include_directories(external/amgcl/)
 include_directories(external/eigen/)
