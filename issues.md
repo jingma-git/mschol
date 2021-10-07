@@ -6,7 +6,7 @@ cd makefiles;
 ./run_anidiff.sh
 ```
 
-Then you can go to the "result" directory, the amg solver works OK. You can find a edge-preserved blurred image iter0.png. But ichol just stuck on dpotrf_(), ichol.h.
+Then you can go to the "result" directory, the amg solver works OK. You can find an edge-preserved blurred image iter0.png. But ichol just stuck on dpotrf_(), ichol.h.
 
 The major changes I've made in ichol.h for debug purpose are:
 1. line 13
