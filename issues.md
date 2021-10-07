@@ -21,3 +21,4 @@ Other useful links may help you solve this "bug":
 3. https://docs.github.com/en/github/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits
 
 I did not gitignore the "result" directory, hopefully, the log file can help you solve the issue.
+My OS is Ubuntu20.04 LTS
