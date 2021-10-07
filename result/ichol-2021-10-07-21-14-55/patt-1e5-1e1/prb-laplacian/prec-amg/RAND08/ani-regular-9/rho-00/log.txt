@@ -1,0 +1,33 @@
+[2021-10-07 21:14:55.056] [info] problem: laplacian, RD=1
+[2021-10-07 21:14:55.056] [info] coarsest=25
+[2021-10-07 21:14:55.073] [info] precision:8 rows:800, cols:1280, num_nods:1024000 num_cels:2043842
+[2021-10-07 21:14:55.287] [info] mesh dimension: 2
+[2021-10-07 21:14:55.287] [info] problem dimension: 1
+[2021-10-07 21:14:55.287] [info] total node number N=1024000
+--- number of nodes on each level ---
+15 62 250 1000 4000 16000 64000 256000 1024000 
+[2021-10-07 21:14:55.287] [info] total number of levels: 9
+--- mean length scale on each level ---
+369.129 181.563 90.4177 45.2089 22.6044 11.3022 5.65111 2.82555 1.41278 
+[2021-10-07 21:15:03.115] [info] precompute time: 1.2930000000000002e-06
+[2021-10-07 21:15:03.412] [info] symbolic time: 4.71e-07
+
+Number of levels:    6
+Operator complexity: 2.19
+Grid complexity:     1.65
+Memory footprint:    361.97 M
+
+level     unknowns       nonzeros      memory
+---------------------------------------------
+    0      1024000        5115840    201.47 M (45.76%)
+    1       509990        4519132    119.68 M (40.42%)
+    2       119650        1130766     28.67 M (10.11%)
+    3        30191         305645      7.53 M ( 2.73%)
+    4         7903          86057      2.06 M ( 0.77%)
+    5         2112          23446      2.56 M ( 0.21%)
+
+[2021-10-07 21:15:04.285] [info] fac time: 0.602894552
+[2021-10-07 21:15:05.393] [info] slv time: 1.108736972
+[2021-10-07 21:15:05.393] [info] all time: 1.711631524
+[2021-10-07 21:15:05.393] [info] pcg iter: 24
+[INFO] done

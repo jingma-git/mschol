@@ -1,0 +1,74 @@
+{
+    "inpath": {
+        "value": "..\/data\/shell.png",
+        "is_required": "y"
+    },
+    "imgh": {
+        "value": "1280",
+        "is_required": "y"
+    },
+    "imgw": {
+        "value": "800",
+        "is_required": "y"
+    },
+    "num_samples": {
+        "value": "9",
+        "is_required": "y"
+    },
+    "wp": {
+        "value": "1e6",
+        "is_required": "y"
+    },
+    "outdir": {
+        "value": "..\/result\/ichol-2021-10-07-21-14-55\/patt-1e5-1e1\/\/prb-laplacian\/prec-amg\/RAND08\/ani-regular-9\/rho-00\/",
+        "is_required": "y"
+    },
+    "nei_num": {
+        "value": "00",
+        "is_required": "y"
+    },
+    "mtr_name": {
+        "value": "RAND08",
+        "is_required": "y"
+    },
+    "max_E": {
+        "value": "1e5",
+        "is_required": "y"
+    },
+    "min_E": {
+        "value": "1e1",
+        "is_required": "y"
+    },
+    "num_threads": {
+        "value": "8",
+        "is_required": "y"
+    },
+    "subst_num_threads": {
+        "value": "8",
+        "is_required": "y"
+    },
+    "precond": {
+        "value": "amg",
+        "is_required": "y"
+    },
+    "max_su_size": {
+        "value": "64",
+        "is_required": "y"
+    },
+    "sample_strategy": {
+        "value": "regular",
+        "is_required": "y"
+    },
+    "prb_name": {
+        "value": "laplacian",
+        "is_required": "y"
+    },
+    "alpha": {
+        "value": "1e-4",
+        "is_required": "y"
+    },
+    "coarsest_node_num": {
+        "value": "25",
+        "is_required": "y"
+    }
+}
