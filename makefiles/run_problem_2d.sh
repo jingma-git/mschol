@@ -11,7 +11,7 @@ monthday=$(date +"%Y-%m-%d-%H-%M-%S")/patt-${max_e}-${min_e}/
 for precond in ichol amg; do
 for prb_name in laplacian; do # [laplacian | elasticity]
 for strategy in random; do # [regular | random]
-for num_rand_samples in 200000; do # 200000 500000 800000
+for num_rand_samples in 1024; do # 200000 500000 800000
 for mtr_name in RAND08; do
 for rho in 07.0; do # 07.5 08.0
     if [ "$precond" != "ichol" ]; then

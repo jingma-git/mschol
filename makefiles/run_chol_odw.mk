@@ -25,8 +25,8 @@ TET_LAP_OUT = $(TET_LAP_OUTDIR)/result.vtk
 IN_PATH = ../data/shell.png
 ANI_OUTDIR = ../result/ichol-$(DATE)/$(MTR_NAME)/ani-$(SAMPLE_STRATEGY)-$(NUM_RAND_SAMPLES)/rho-$(NEI_NUM)/
 ANI_OUT = $(ANI_OUTDIR)/result.vtk
-IMG_H = 1280 #32
-IMG_W = 800 #20
+IMG_H = 32 #1280
+IMG_W = 20 #800
 
 trilap: $(TRI_LAP_OUT)
 tetlap: $(TET_LAP_OUT)

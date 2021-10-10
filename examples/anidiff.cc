@@ -15,6 +15,7 @@
 #include "src/cholesky.h"
 #include "src/ptree.h"
 #include "src/util.h"
+#include "src/visual.h"
 
 using namespace std;
 using namespace mschol;
@@ -257,6 +258,7 @@ int main(int argc, char *argv[])
     saveImg(b, I0.rows, I0.cols, outdir + "ini.png");
     SparseMatrix<double> A;
     prb->LHS((Float *)I0.data, A);
+    // vis_spmat(outdir + "/A.png", A);
 
     precond_cg_solver pcg(cg_prec);
 

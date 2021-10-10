@@ -1,5 +1,8 @@
 # Multiscale Cholesky Preconditioning
+This is a customized version of mschol implementation.
+Courtesy to the original author https://gitlab.inria.fr/geomerix/ichol.
 
+Additional features: edge-preserved smoothing.
 ## Install dependencies
 
 This project depends on several third-party libraries. Besides some
