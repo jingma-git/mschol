@@ -463,7 +463,7 @@ namespace mschol
           flag.setZero();
 
           int nb_threads = std::min(num_threads, static_cast<int>(count));
-          // #pragma omp parallel for num_threads(nb_threads)
+#pragma omp parallel for num_threads(nb_threads)
           for (index_t cnt = lev_begin; cnt < lev_end; ++cnt)
           {
             if (!factorized[sn_lev_ind_[cnt]])
@@ -596,7 +596,7 @@ namespace mschol
   private:
     int iteration_body(const index_t J)
     {
-      spdlog::info("iteration body {}", J);
+      // spdlog::info("iteration body {}", J);
       const auto SU_ptr = SU_.sup_U_.outerIndexPtr();
       const auto SU_ind = SU_.sup_U_.innerIndexPtr();
       const auto SU_val = SU_.sup_U_.valuePtr();
@@ -628,8 +628,8 @@ namespace mschol
             s.setZero();
             T *a = &SU_.block_[SU_val[iter1]];
             T *b = &SU_.block_[SU_val[iter2]];
-            spdlog::info("U{}{}-=U{}{} * U{}{}, numK={}, iter1={},iter2={} p={},q={}",
-                         I, J, I, K, J, K, numK, iter1, iter2, p, q);
+            // spdlog::info("U{}{}-=U{}{} * U{}{}, numK={}, iter1={},iter2={} p={},q={}",
+            //              I, J, I, K, J, K, numK, iter1, iter2, p, q);
             cblas_dgemm(CblasColMajor, CblasTrans, CblasNoTrans, p, q, numK, 1,
                         a, numK, b, numK, 1, s.data(), p);
 
@@ -683,20 +683,20 @@ namespace mschol
           T *Uii = &SU_.block_[SU_val[SU_ptr[I + 1] - 1]];
           T *Uij = &SU_.block_[SU_val[cnt]];
           int n = SU_.mask_.valuePtr()[cnt].count();
-          spdlog::info("Uij/Uii: I,J={},{} numI={},n={}", I, J, numI, n);
+          // spdlog::info("Uij/Uii: I,J={},{} numI={},n={}", I, J, numI, n);
           cblas_dtrsm(CblasColMajor, CblasLeft, CblasUpper, CblasTrans, CblasNonUnit, numI, n, 1, Uii, numI, Uij, numI);
         }
         else
         {
           //-> dense cholesky
-          spdlog::info("dense cholesky numJ={}", numJ);
+          // spdlog::info("dense cholesky numJ={}", numJ);
           T *Ujj = &SU_.block_[SU_val[cnt]];
           matd_t mat = Eigen::Map<matd_t>(Ujj, numJ, numJ);
-          egl::writeDMAT("Ujj.mat", mat, false);
+          // egl::writeDMAT("Ujj.mat", mat, false);
           char uplo = 'U';
           int info;
           dpotrf_(&uplo, &numJ, Ujj, &numJ, &info);
-          spdlog::info("dense cholesky info={}", info);
+          // spdlog::info("dense cholesky info={}", info);
           if (info != 0)
           {
             return 1;

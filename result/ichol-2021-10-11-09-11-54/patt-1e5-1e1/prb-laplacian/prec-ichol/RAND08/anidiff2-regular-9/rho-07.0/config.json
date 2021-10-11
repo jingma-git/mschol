@@ -1,0 +1,74 @@
+{
+    "inpath": {
+        "value": "..\/data\/I.dmat",
+        "is_required": "y"
+    },
+    "imgh": {
+        "value": "800",
+        "is_required": "y"
+    },
+    "imgw": {
+        "value": "1280",
+        "is_required": "y"
+    },
+    "num_samples": {
+        "value": "9",
+        "is_required": "y"
+    },
+    "wp": {
+        "value": "1e6",
+        "is_required": "y"
+    },
+    "outdir": {
+        "value": "..\/result\/ichol-2021-10-11-09-11-54\/patt-1e5-1e1\/\/prb-laplacian\/prec-ichol\/RAND08\/anidiff2-regular-9\/rho-07.0\/",
+        "is_required": "y"
+    },
+    "nei_num": {
+        "value": "07.0",
+        "is_required": "y"
+    },
+    "mtr_name": {
+        "value": "RAND08",
+        "is_required": "y"
+    },
+    "max_E": {
+        "value": "1e5",
+        "is_required": "y"
+    },
+    "min_E": {
+        "value": "1e1",
+        "is_required": "y"
+    },
+    "num_threads": {
+        "value": "8",
+        "is_required": "y"
+    },
+    "subst_num_threads": {
+        "value": "8",
+        "is_required": "y"
+    },
+    "precond": {
+        "value": "ichol",
+        "is_required": "y"
+    },
+    "max_su_size": {
+        "value": "64",
+        "is_required": "y"
+    },
+    "sample_strategy": {
+        "value": "regular",
+        "is_required": "y"
+    },
+    "prb_name": {
+        "value": "laplacian",
+        "is_required": "y"
+    },
+    "alpha": {
+        "value": "1e-4",
+        "is_required": "y"
+    },
+    "coarsest_node_num": {
+        "value": "25",
+        "is_required": "y"
+    }
+}

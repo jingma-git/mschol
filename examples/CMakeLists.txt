@@ -19,3 +19,16 @@ target_link_libraries(anidiff
   ${GMP_LIBRARIES}
   ${OpenCV_LIBRARIES}
   )
+
+
+add_executable(anidiff2 anidiff2.cc)
+target_link_libraries(anidiff2
+  mschol
+  ${GMP_LIBRARIES}
+  )
+
+add_executable(mat2cv mat2cv.cc)
+target_link_libraries(mat2cv
+    ${OpenCV_LIBRARIES}
+    )
+  

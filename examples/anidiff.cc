@@ -7,6 +7,8 @@
 
 #include <opencv2/opencv.hpp>
 #include <spdlog/spdlog.h>
+#include <egl/writeSMAT.h>
+#include <egl/writeDMAT.h>
 
 #include "src/io.h"
 #include "src/chol_hierarchy.h"
@@ -112,26 +114,35 @@ public:
 private:
     void grad(const Float *ptr, int rows, int cols, matd_t &C) const // d: diffusion coeff
     {
-        cv::Mat It(rows, cols, sizeof(Float) == 4 ? CV_32F : CV_64F, const_cast<Float *>(ptr)); // image at time step t
         C = matd_t::Zero(rows, cols);
-        cv::Mat dx, dy;
-
-        cv::Sobel(It, dx, sizeof(Float) == 4 ? CV_32F : CV_64F, 1, 0, 3); // gradient along x
-        cv::Sobel(It, dy, sizeof(Float) == 4 ? CV_32F : CV_64F, 0, 1, 3); // gradient along y
-        for (int i = 0; i < It.rows; ++i)
-            for (int j = 0; j < It.cols; ++j)
+        for (int i = 0; i < rows; ++i)
+        {
+            for (int j = 0; j < cols; ++j)
             {
-                Float gx = dx.at<Float>(i, j), gy = dy.at<Float>(i, j);
-                Float c;
-                if (i == 0 || i == It.rows - 1 || j == 0 || j == It.cols - 1)
-                    c = 0; // no diffusion on boundary
-                else
-                {
-                    // c = std::exp(-(gx * gx + gy * gy) * K2);
-                    c = 1.0 / (1.0 + (gx * gx + gy * gy) * K2);
-                }
-                C(i, j) = c;
+                Float I00 = (i == 0 || j == 0) ? 0 : *(ptr + (i - 1) * cols + (j - 1));
+                Float I01 = (i == 0) ? 0 : *(ptr + (i - 1) * cols + (j));
+                Float I02 = (i == 0 || j == cols - 1) ? 0 : *(ptr + (i - 1) * cols + (j + 1));
+
+                Float I10 = (j == 0) ? 0 : *(ptr + (i)*cols + (j - 1));
+                Float I11 = *(ptr + (i)*cols + (j));
+                Float I12 = (j == cols - 1) ? 0 : *(ptr + (i)*cols + (j + 1));
+
+                Float I20 = (i == rows - 1 || j == 0) ? 0 : *(ptr + (i + 1) * cols + (j - 1));
+                Float I21 = (i == rows - 1) ? 0 : *(ptr + (i + 1) * cols + (j));
+                Float I22 = (i == rows - 1 || j == cols - 1) ? 0 : *(ptr + (i + 1) * cols + (j + 1));
+
+                Float gx = fabs(I02 - I00 +
+                                (I12 - I10) * 2 +
+                                I22 - I20);
+
+                Float gy = fabs(I20 - I00 +
+                                (I21 - I01) * 2 +
+                                I22 - I02);
+                // larger gradient (color change) yiels smaller coeff,
+                // which blocks 'pixel diffusion'
+                C(i, j) = 1.0 / (1.0 + (gx * gx + gy * gy) * K2);
             }
+        }
     }
 
     void insertCoefficient(int id, int i, int j, Float w, std::vector<Eigen::Triplet<Float>> &coeffs,
@@ -169,12 +180,14 @@ int main(int argc, char *argv[])
     const int imgw = pt.get<int>("imgw.value");
 
     cv::Mat img = cv::imread(inpath, cv::IMREAD_GRAYSCALE);
-    cv::resize(img, img, cv::Size(imgh, imgw)); // 5, 8
+    cv::resize(img, img, cv::Size(imgw, imgh)); // 8, 5
     cv::Mat I0(img.rows, img.cols, sizeof(Float) == 4 ? CV_32F : CV_64F);
     img.convertTo(I0, sizeof(Float) == 4 ? CV_32F : CV_64F); // 4 bytes == 32 bits
     int num_nods = I0.rows * I0.cols;
     int num_cels = (I0.rows - 1) * (I0.cols - 1) * 2;
     spdlog::info("precision:{} rows:{}, cols:{}, num_nods:{} num_cels:{}", sizeof(Float), I0.rows, I0.cols, num_nods, num_cels);
+    matd_t imgI = Eigen::Map<matd_t>((Float *)I0.data, I0.rows, I0.cols);
+    egl::writeDMAT(outdir + "/I.dmat", imgI, false);
 
     //-> CHOL LEVELS
     std::vector<shared_ptr<chol_level>> levels;
@@ -258,7 +271,9 @@ int main(int argc, char *argv[])
     saveImg(b, I0.rows, I0.cols, outdir + "ini.png");
     SparseMatrix<double> A;
     prb->LHS((Float *)I0.data, A);
-    // vis_spmat(outdir + "/A.png", A);
+    // egl::writeDMAT("b.dmat", b, false);
+    // egl::writeSMAT("A.smat", A);
+    vis_spmat(outdir + "/A.png", A);
 
     precond_cg_solver pcg(cg_prec);
 
@@ -283,7 +298,7 @@ int main(int argc, char *argv[])
     spdlog::info("slv time: {}", slv_time);
     spdlog::info("all time: {}", fac_time + slv_time);
     spdlog::info("pcg iter: {}", pcg.m_iters);
-    saveImg(u, I0.rows, I0.cols, outdir + "iter0.png");
+    saveImg(u, I0.rows, I0.cols, outdir + "/iter0.png");
     if (A.rows() < 80)
     {
         for (int k = 0; k < A.outerSize(); ++k)

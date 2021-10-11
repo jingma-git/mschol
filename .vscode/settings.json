@@ -1,7 +1,11 @@
 {
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
-        "sparse": "cpp"
+        "sparse": "cpp",
+        "core": "cpp",
+        "array": "cpp",
+        "string_view": "cpp",
+        "dense": "cpp"
     },
     "C_Cpp.intelliSenseEngine": "Tag Parser"
 }

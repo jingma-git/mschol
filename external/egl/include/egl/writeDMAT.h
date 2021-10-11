@@ -8,7 +8,7 @@ namespace egl
     template <typename DerivedW>
     bool writeDMAT(
         const std::string file_name,
-        const Eigen::MatrixBase<DerivedW> &W,
+        const Eigen::PlainObjectBase<DerivedW> &W,
         const bool ascii)
     {
         FILE *fp = fopen(file_name.c_str(), "wb");

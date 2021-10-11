@@ -16,6 +16,11 @@ endif(Boost_FOUND)
 
 # BLAS and LAPACK
 find_package(BLAS REQUIRED)
+if (BLAS_FOUND)
+    include_directories(${BLAS_INCLUDE_DIRS})
+    message("-- BLAS_LIBS: ${BLAS_LIBRARIES}")
+endif()
+
 find_package(LAPACK REQUIRED)
 set(BLAS_LAPACK_LIBS ${LAPACK_LIBARIES} ${BLAS_LIBRARIES})
 

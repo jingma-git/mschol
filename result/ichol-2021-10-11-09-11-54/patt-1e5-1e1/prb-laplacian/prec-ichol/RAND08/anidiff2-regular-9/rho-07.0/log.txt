@@ -1,0 +1,96 @@
+[2021-10-11 09:12:04.971] [info] problem: laplacian, RD=1
+[2021-10-11 09:12:04.971] [info] coarsest=25
+[2021-10-11 09:12:04.978] [info] precision:8 rows:800, cols:1280, num_nods:1024000 num_cels:2043842
+[2021-10-11 09:12:05.184] [info] mesh dimension: 2
+[2021-10-11 09:12:05.184] [info] problem dimension: 1
+[2021-10-11 09:12:05.184] [info] total node number N=1024000
+--- number of nodes on each level ---
+15 62 250 1000 4000 16000 64000 256000 1024000 
+[2021-10-11 09:12:05.184] [info] total number of levels: 9
+--- mean length scale on each level ---
+369.129 181.563 90.4177 45.2089 22.6044 11.3022 5.65111 2.82555 1.41278 
+--- level ptr: 0 768000 960000 1008000 1020000 1023000 1023750 1023938 1023985 1024000 
+
+[2021-10-11 09:12:12.871] [info] nei_num 7
+[2021-10-11 09:12:12.871] [info] max supernode size: 64
+[2021-10-11 09:12:12.871] [info] ====== build pattern and wavelet trans ======
+[2021-10-11 09:12:12.871] [info] # patt base Rd: 1
+[2021-10-11 09:12:12.871] [info] # patt base nods.cols(): 1024000
+[2021-10-11 09:12:12.872] [info] Rd: 1
+[2021-10-11 09:12:13.075] [info] volume=1021921
+--- max min finest l: 1.41423 1.00001
+--- length scale: 1.41278
+--- length scale: 2.82555
+--- length scale: 5.65111
+--- length scale: 11.3022
+--- length scale: 22.6044
+--- length scale: 45.2089
+--- length scale: 90.4177
+--- length scale: 181.563
+--- length scale: 369.129
+[2021-10-11 09:12:13.129] [info] l_max=369.1288844473341, l_min=1.4127772128417844
+[2021-10-11 09:12:13.131] [info] range search start
+[2021-10-11 09:12:13.136] [info] process 1024000 to 256000
+[2021-10-11 09:12:13.520] [info] curr nodes number=1024000
+[2021-10-11 09:12:16.036] [info] process 256000 to 64000
+[2021-10-11 09:12:16.119] [info] curr nodes number=256000
+[2021-10-11 09:12:16.651] [info] process 64000 to 16000
+[2021-10-11 09:12:16.669] [info] curr nodes number=64000
+[2021-10-11 09:12:16.785] [info] process 16000 to 4000
+[2021-10-11 09:12:16.793] [info] curr nodes number=16000
+[2021-10-11 09:12:16.824] [info] process 4000 to 1000
+[2021-10-11 09:12:16.825] [info] curr nodes number=4000
+[2021-10-11 09:12:16.832] [info] process 1000 to 250
+[2021-10-11 09:12:16.832] [info] curr nodes number=1000
+[2021-10-11 09:12:16.833] [info] process 250 to 62
+[2021-10-11 09:12:16.833] [info] curr nodes number=250
+[2021-10-11 09:12:16.834] [info] process 62 to 15
+[2021-10-11 09:12:16.834] [info] curr nodes number=62
+[2021-10-11 09:12:16.834] [info] process 15 to 0
+[2021-10-11 09:12:16.834] [info] curr nodes number=15
+[2021-10-11 09:12:19.597] [info] range search end with nnz=194308315
+[2021-10-11 09:12:19.687] [info] run sparsity time=6.815509794
+[2021-10-11 09:12:19.687] [info] ====== aggregate supernodes ======
+[2021-10-11 09:12:19.689] [info] lower to symmetric
+[2021-10-11 09:12:24.135] [info] ----------
+[2021-10-11 09:12:24.135] [info] group columns into supernodes
+[2021-10-11 09:12:24.280] [info] supernode number: 38713
+[2021-10-11 09:12:24.283] [info] build tilde S_rho
+[2021-10-11 09:12:24.286] [info] === S_su ===
+[2021-10-11 09:12:28.432] [info] color num of block: 11
+[2021-10-11 09:12:28.432] [info] color num of block: 2
+[2021-10-11 09:12:28.432] [info] color num of block: 6
+[2021-10-11 09:12:28.432] [info] color num of block: 1
+[2021-10-11 09:12:28.433] [info] color num of block: 13
+[2021-10-11 09:12:28.433] [info] color num of block: 12
+[2021-10-11 09:12:28.436] [info] color num of block: 16
+[2021-10-11 09:12:28.437] [info] color num of block: 15
+[2021-10-11 09:12:28.438] [info] color num of block: 14
+[2021-10-11 09:12:28.503] [info] compute supernodal cell row mask......
+[2021-10-11 09:12:28.660] [info] initialize masks
+[2021-10-11 09:12:38.010] [info] INITIAL ALPHA=0.0001
+[2021-10-11 09:12:38.010] [info] ====== precomputation done ======
+[2021-10-11 09:12:38.137] [info] precompute time: 25.265676727
+[2021-10-11 09:12:38.348] [info] mat size: 1024000x1024000
+[2021-10-11 09:12:38.348] [info] mat nnz: 5115840
+[2021-10-11 09:12:38.348] [info] ====== symbolic ======
+[2021-10-11 09:12:39.125] [info] nnz in superU: 976483
+[2021-10-11 09:12:39.125] [info] nnz in supernodal block: 393080371
+[2021-10-11 09:12:39.125] [info] total size: 1048576000000
+[2021-10-11 09:12:39.145] [info] edges added
+[2021-10-11 09:12:39.159] [info] edges added
+[2021-10-11 09:12:39.171] [info] level scheduling done
+[2021-10-11 09:12:39.191] [info] level scheduling done
+[2021-10-11 09:12:39.226] [info] factor density: 0.00037487065410614015
+[2021-10-11 09:12:39.226] [info] symbolic time: 0.8778779369999999
+
+[2021-10-11 09:12:39.438] [info] number of threads: 8
+[2021-10-11 09:12:39.444] [info] compuate TAT^t...
+[2021-10-11 09:12:39.652] [info] init ichol...
+[2021-10-11 09:12:39.890] [info] supernode number=38713
+[2021-10-11 09:12:50.152] [info] reboot times: 0
+[2021-10-11 09:12:50.152] [info] fac time: 10.713828568999999
+[2021-10-11 09:29:11.411] [info] slv time: 981.258598324
+[2021-10-11 09:29:11.411] [info] all time: 991.972426893
+[2021-10-11 09:29:11.411] [info] pcg iter: 2250
+[INFO] done

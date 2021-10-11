@@ -2,7 +2,9 @@
 This is a customized version of mschol implementation.
 Courtesy to the original author https://gitlab.inria.fr/geomerix/ichol.
 
-Additional features: edge-preserved smoothing.
+Additional features: edge-preserved smoothing. Since the LHS system is regular, AMG solver works better. (Experiments: AMG <30 iters to converge, ichol preconditioner: around 2k iters to converge)
+
+## ToDO: test performance on heterogeneous data, elastic problem
 ## Install dependencies
 
 This project depends on several third-party libraries. Besides some
