@@ -22,12 +22,15 @@ for rho in 07.0; do # 07.5 08.0
 	new_num_samples=`echo "${num_rand_samples}/2" | bc`
     fi
     date=${monthday}/prb-${prb_name}/prec-${precond}
-    make -f run_chol_odw.mk anidiff DATE=${date} NEI_NUM=${rho} \
+    make -f run_chol_odw.mk anidiff2 DATE=${date} NEI_NUM=${rho} \
 	 MTR_NAME=${mtr_name} MAX_E=${max_e} MIN_E=${min_e} \
 	 NUM_THREADS=${num_threads} PRECOND=${precond} \
 	 SUBST_NUM_THREADS=${num_threads} NUM_RAND_SAMPLES=${new_num_samples} \
 	 SAMPLE_STRATEGY=${strategy} PRB_NAME=${prb_name} \
-	 COARSEST_NODE_NUM=25 IMG_H=20 IMG_W=32
+	 COARSEST_NODE_NUM=25 IMG_H=800 IMG_W=1280
+    make -f run_chol_odw.mk mat2cv DATE=${date} NEI_NUM=${rho} \
+     MTR_NAME=${mtr_name} SAMPLE_STRATEGY=${strategy} \
+     NUM_RAND_SAMPLES=${new_num_samples} IMG_H=800 IMG_W=1280
 done
 done
 done
